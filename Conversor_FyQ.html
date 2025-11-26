@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Unidades en Física y Química - 4º ESO (Alumno)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--
+    Autor: Manuel López Coello
+    Recurso: Unidades físicas (versión alumno)
+    Licencia: Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional
+              (CC BY-NC-SA 4.0)
+  -->
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      padding: 1.5rem;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: #f9fafb;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #cbd5f5;
+      margin-top: 2rem;
+    }
+
+    p {
+      line-height: 1.5;
+      color: #e5e7eb;
+    }
+
+    .top-actions {
+      text-align: right;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro {
+      background: #020617;
+      padding: 1rem 1.2rem;
+      border-radius: 0.8rem;
+      border: 1px solid #1f2937;
+      margin-bottom: 1.5rem;
+    }
+
+    .highlight {
+      color: #facc15;
+      font-weight: 600;
+    }
+
+    .selector-box {
+      background: #020617;
+      border-radius: 0.8rem;
+      border: 1px solid #1f2937;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 0.8rem;
+      padding: 1rem;
+      border: 1px solid #1f2937;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #bfdbfe;
+    }
+
+    .card .symbol {
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    .card .example {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .converter {
+      margin-top: 1rem;
+      background: #020617;
+      border-radius: 0.8rem;
+      padding: 1.2rem;
+      border: 1px solid #1f2937;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .converter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input, select, button {
+      border-radius: 0.5rem;
+      border: 1px solid #374151;
+      padding: 0.45rem 0.6rem;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 0.95rem;
+    }
+
+    input:focus, select:focus, button:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: #3b82f6;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s;
+    }
+
+    button:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+
+    .result {
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 0.4rem;
+      min-height: 1.5rem;
+    }
+
+    .error {
+      color: #f97373;
+    }
+
+    .steps {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .steps-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .steps-value,
+    .steps-result {
+      font-weight: 600;
+    }
+
+    .steps-result {
+      color: #4ade80;
+    }
+
+    .steps-eq,
+    .steps-mul {
+      font-weight: 700;
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content:center;
+      border: 1px solid #374151;
+      border-radius: 0.35rem;
+      padding: 0.15rem 0.5rem;
+      min-width: 80px;
+      background: #020617;
+      font-size: 0.9rem;
+    }
+
+    .fraction .top {
+      border-bottom: 1px solid #4b5563;
+      padding-bottom: 0.1rem;
+      margin-bottom: 0.1rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .fraction .bottom {
+      padding-top: 0.05rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .steps-text {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: #d1d5db;
+    }
+
+    .cancelled {
+      text-decoration: line-through;
+      text-decoration-color: #f97316;
+      text-decoration-thickness: 2px;
+      opacity: 0.9;
+    }
+
+    sup {
+      font-size: 0.75em;
+    }
+
+    /* Inputs práctica y examen */
+    .frac-input {
+      width: 4.2rem;
+      margin: 0 0.1rem;
+      text-align: center;
+      background: #020617;
+      border-radius: 0.35rem;
+      border: 1px solid #4b5563;
+      color: #e5e7eb;
+      font-size: 0.8rem;
+    }
+
+    .frac-input.unit {
+      width: 4.8rem;
+    }
+
+    .frac-input.ok {
+      border-color: #4ade80;
+      box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.4);
+    }
+
+    .frac-input.wrong {
+      border-color: #f97373;
+      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.4);
+    }
+
+    .practice-grade-btn {
+      margin-top: 0.8rem;
+    }
+
+    .exam-question {
+      text-align: left;
+      margin: 0.5rem 0;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+    }
+
+    .exam-question-title {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .exam-answer-row {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    /* Línea de unidades (timeline) */
+    .timeline-box {
+      margin-top: 1rem;
+      background: #020617;
+      border-radius: 0.8rem;
+      border: 1px solid #1f2937;
+      padding: 1rem 1.2rem;
+    }
+
+    .timeline-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .timeline-unit {
+      width: 90px;
+      height: 90px;
+      border-radius: 999px;
+      border: 2px solid #4b5563;
+      background: radial-gradient(circle at 30% 30%, #1f2937, #020617);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.4rem;
+      box-shadow: 0 0 10px rgba(15, 23, 42, 0.7);
+    }
+
+    .timeline-unit-name {
+      font-weight: 700;
+      color: #e5e7eb;
+      font-size: 0.95rem;
+    }
+
+    .timeline-unit-symbol {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 0.15rem;
+    }
+
+    .timeline-connector {
+      position: relative;
+      width: 180px;
+      height: 70px;
+    }
+
+    .timeline-connector-line {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 50%;
+      border-top: 2px solid #4b5563;
+      transform: translateY(-50%);
+    }
+
+    .timeline-connector::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 7px 0 7px 11px;
+      border-style: solid;
+      border-color: transparent transparent transparent #4ade80;
+    }
+
+    .timeline-connector::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 7px 11px 7px 0;
+      border-style: solid;
+      border-color: transparent #facc15 transparent transparent;
+    }
+
+    .arrow-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .arrow-label-right {
+      top: 6px;
+      color: #4ade80;
+    }
+
+    .arrow-label-left {
+      bottom: 6px;
+      color: #facc15;
+    }
+
+    .arrow-label sup {
+      font-size: 0.7em;
+    }
+
+    .license {
+      margin-top: 2rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #1f2937;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    .license strong {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 600px) {
+      .converter-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      button {
+        width: 100%;
+      }
+      .fraction {
+        min-width: 70px;
+      }
+      .timeline-connector {
+        width: 150px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      .container {
+        max-width: none;
+        padding: 0.5rem;
+      }
+      .intro, .card, .converter, .timeline-box {
+        background: #ffffff;
+        color: #000000;
+        border-color: #000000;
+      }
+      .steps-result {
+        color: #000000;
+      }
+      .license {
+        color: #000000;
+        border-color: #000000;
+      }
+      button {
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+      }
+      .top-actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="top-actions">
+      <button id="printBtn">Imprimir esta página</button>
+    </div>
+
+    <h1>Unidades en Física y Química</h1>
+    <p style="text-align:center; margin-bottom:1rem;">
+      Versión alumno · 4º ESO · Física y Química
+    </p>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <p>
+        En Física y Química se trabajan muchas <span class="highlight">magnitudes</span>: longitud, masa,
+        superficie, volumen, densidad, tiempo, etc. Cada magnitud tiene sus propias <strong>unidades</strong> y
+        es importante saber transformar unas en otras.
+      </p>
+      <p>
+        En esta página puedes elegir una magnitud y ver:
+      </p>
+      <ul style="margin-top:0; padding-left:1.2rem;">
+        <li>Las unidades más usadas y su explicación.</li>
+        <li>Una línea de unidades con las relaciones entre ellas.</li>
+        <li>Ejemplos resueltos de conversiones paso a paso.</li>
+        <li>Un modo práctica para completar fracciones de conversión.</li>
+        <li>Un modo examen rápido para comprobar lo que sabes.</li>
+      </ul>
+      <p>
+        Usaremos factores de <span class="highlight">10<sup>n</sup></span>, porque el Sistema Internacional
+        está basado en potencias de 10.
+      </p>
+    </section>
+
+    <!-- SELECTOR DE MAGNITUD -->
+    <section class="selector-box">
+      <p style="margin-top:0;">
+        Elige la magnitud con la que quieres trabajar:
+      </p>
+      <div class="converter-row">
+        <select id="magnitudeSelect">
+          <option value="longitud">Longitud</option>
+          <option value="masa">Masa</option>
+          <option value="superficie">Superficie</option>
+          <option value="volumen">Volumen</option>
+          <option value="densidad">Densidad</option>
+        </select>
+      </div>
+      <p id="magnitudeDescription" class="steps-text" style="text-align:center;"></p>
+    </section>
+
+    <!-- 1. EXPLICACIÓN UNIDADES (dinámico) -->
+    <h2>1. Explicación de las unidades</h2>
+    <section id="unitsSection" class="cards"></section>
+
+    <!-- 2. LÍNEA DE UNIDADES -->
+    <h2>2. Línea de unidades y relaciones</h2>
+    <section id="timelineSection" class="timeline-box"></section>
+
+    <!-- 3. EJEMPLOS RESUELTOS -->
+    <h2>3. Ejemplos de conversiones resueltas</h2>
+    <section id="examplesSection" class="converter"></section>
+
+    <!-- 4. MODO PRÁCTICA -->
+    <h2>4. Modo práctica: completa las fracciones de conversión</h2>
+    <section class="converter">
+      <p style="text-align:center; margin-top:0;">
+        Escribe una cantidad, elige las unidades y completa las fracciones de conversión con potencias de 10
+        (por ejemplo, <code>10^3</code>, <code>10^2</code>…).
+      </p>
+      <div class="converter-row">
+        <input id="practiceValue" type="text" placeholder="Cantidad (ej. 250)" />
+        <select id="practiceFromUnit"></select>
+        <span>→</span>
+        <select id="practiceToUnit"></select>
+        <button id="createExerciseBtn">Crear ejercicio</button>
+      </div>
+      <div id="practiceArea" class="result"></div>
+    </section>
+
+    <!-- 5. MODO EXAMEN -->
+    <h2>5. Modo examen rápido</h2>
+    <section class="converter">
+      <p style="text-align:center; margin-top:0;">
+        Se generarán varias conversiones para la magnitud seleccionada. Para cada una, escribe el resultado en la forma:<br/>
+        <strong>a × 10^n (unidad destino)</strong>.
+      </p>
+      <div class="converter-row">
+        <span>Número de preguntas:</span>
+        <select id="examQuestionCount">
+          <option value="3">3</option>
+          <option value="5" selected>5</option>
+          <option value="10">10</option>
+        </select>
+        <button id="generateExamBtn">Generar examen</button>
+      </div>
+      <div id="examArea" class="result"></div>
+    </section>
+
+    <!-- LICENCIA -->
+    <footer class="license">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+           target="_blank" rel="license noopener noreferrer">
+          <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
+               alt="Licencia Creative Commons BY-NC-SA 4.0"
+               style="border-width:0" />
+        </a><br />
+        <strong>2025 Manuel López Coello</strong><br />
+        Este recurso educativo se distribuye bajo licencia
+        <em>Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</em>.<br />
+        Se permite copiar, adaptar y compartir citando la autoría y sin fines comerciales,
+        manteniendo la misma licencia en las obras derivadas.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    // --------- Definición de magnitudes y unidades ---------
+    const magnitudeConfigs = {
+      longitud: {
+        label: "Longitud",
+        description: "Mide distancias: alto, ancho, largo, recorridos, etc.",
+        // exp relativo al metro (m)
+        units: [
+          {
+            id: "mm",
+            symbol: "mm",
+            name: "Milímetro",
+            exp: -3,
+            info: 'Es una milésima de metro. <span class="highlight">1 mm = 10<sup>-3</sup> m</span>.'
+          },
+          {
+            id: "cm",
+            symbol: "cm",
+            name: "Centímetro",
+            exp: -2,
+            info: 'Muy usado en el día a día. <span class="highlight">1 cm = 10<sup>-2</sup> m</span>.'
+          },
+          {
+            id: "dm",
+            symbol: "dm",
+            name: "Decímetro",
+            exp: -1,
+            info: '<span class="highlight">1 dm = 10<sup>-1</sup> m</span>.'
+          },
+          {
+            id: "m",
+            symbol: "m",
+            name: "Metro",
+            exp: 0,
+            info: 'Unidad básica de longitud en el SI. <span class="highlight">1 m = 10<sup>0</sup> m</span>.'
+          },
+          {
+            id: "dam",
+            symbol: "dam",
+            name: "Decámetro",
+            exp: 1,
+            info: '<span class="highlight">1 dam = 10<sup>1</sup> m</span>.'
+          },
+          {
+            id: "hm",
+            symbol: "hm",
+            name: "Hectómetro",
+            exp: 2,
+            info: '<span class="highlight">1 hm = 10<sup>2</sup> m</span>.'
+          },
+          {
+            id: "km",
+            symbol: "km",
+            name: "Kilómetro",
+            exp: 3,
+            info: 'Se usa para distancias grandes. <span class="highlight">1 km = 10<sup>3</sup> m</span>.'
+          }
+        ],
+        examplesHTML: `
+          <article class="card">
+            <h3>Ejemplo 1 · De kilómetros a metros (mayor → menor)</h3>
+            <p><strong>Conversión:</strong> 3 km → m</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">3 <span class="unit">km</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">3 <span class="unit cancelled">km</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>3</sup> m
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">km</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  3 × 10<sup>3</sup> m = 3000 m
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 2 · De centímetros a metros (menor → mayor)</h3>
+            <p><strong>Conversión:</strong> 250 cm → m</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">250 <span class="unit">cm</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">250 <span class="unit cancelled">cm</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 m
+                  </span>
+                  <span class="bottom">
+                    10<sup>2</sup> <span class="cancelled">cm</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  250 ÷ 10<sup>2</sup> m = 2,5 m
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 3 · De milímetros a kilómetros (menor → mucho mayor)</h3>
+            <p><strong>Conversión:</strong> 500&nbsp;000 mm → km</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">500&nbsp;000 <span class="unit">mm</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">500&nbsp;000 <span class="unit cancelled">mm</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 m
+                  </span>
+                  <span class="bottom">
+                    10<sup>3</sup> <span class="cancelled">mm</span>
+                  </span>
+                </span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 km
+                  </span>
+                  <span class="bottom">
+                    10<sup>3</sup> <span class="cancelled">m</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  500&nbsp;000 ÷ 10<sup>3</sup> ÷ 10<sup>3</sup> km = 0,5 km
+                </span>
+              </div>
+            </div>
+          </article>
+        `
+      },
+
+      masa: {
+        label: "Masa",
+        description: "Mide la cantidad de materia de un cuerpo.",
+        // exp relativo al kilogramo (kg)
+        units: [
+          {
+            id: "mg",
+            symbol: "mg",
+            name: "Miligramo",
+            exp: -6,
+            info: '<span class="highlight">1 mg = 10<sup>-6</sup> kg</span>. Muy pequeño, usado en química o medicina.'
+          },
+          {
+            id: "cg",
+            symbol: "cg",
+            name: "Centigramo",
+            exp: -5,
+            info: '<span class="highlight">1 cg = 10<sup>-5</sup> kg</span>.'
+          },
+          {
+            id: "dg",
+            symbol: "dg",
+            name: "Decigramo",
+            exp: -4,
+            info: '<span class="highlight">1 dg = 10<sup>-4</sup> kg</span>.'
+          },
+          {
+            id: "g",
+            symbol: "g",
+            name: "Gramo",
+            exp: -3,
+            info: 'Muy usado en el día a día. <span class="highlight">1 g = 10<sup>-3</sup> kg</span>.'
+          },
+          {
+            id: "dag",
+            symbol: "dag",
+            name: "Decagramo",
+            exp: -2,
+            info: '<span class="highlight">1 dag = 10<sup>-2</sup> kg</span>.'
+          },
+          {
+            id: "hg",
+            symbol: "hg",
+            name: "Hectogramo",
+            exp: -1,
+            info: '<span class="highlight">1 hg = 10<sup>-1</sup> kg</span>.'
+          },
+          {
+            id: "kg",
+            symbol: "kg",
+            name: "Kilogramo",
+            exp: 0,
+            info: 'Unidad básica de masa en el SI. <span class="highlight">1 kg = 10<sup>0</sup> kg</span>.'
+          },
+          {
+            id: "t",
+            symbol: "t",
+            name: "Tonelada",
+            exp: 3,
+            info: 'Para masas muy grandes. <span class="highlight">1 t = 10<sup>3</sup> kg</span>.'
+          }
+        ],
+        examplesHTML: `
+          <article class="card">
+            <h3>Ejemplo 1 · De gramos a kilogramos (menor → mayor)</h3>
+            <p><strong>Conversión:</strong> 2500 g → kg</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">2500 <span class="unit">g</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">2500 <span class="unit cancelled">g</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 kg
+                  </span>
+                  <span class="bottom">
+                    10<sup>3</sup> <span class="cancelled">g</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  2500 ÷ 10<sup>3</sup> kg = 2,5 kg
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 2 · De kilogramos a gramos (mayor → menor)</h3>
+            <p><strong>Conversión:</strong> 1,2 kg → g</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">1,2 <span class="unit">kg</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">1,2 <span class="unit cancelled">kg</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>3</sup> g
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">kg</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  1,2 × 10<sup>3</sup> g = 1200 g
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 3 · De miligramos a toneladas (menor → mucho mayor)</h3>
+            <p><strong>Conversión:</strong> 4,0 × 10<sup>8</sup> mg → t</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">4,0 × 10<sup>8</sup> <span class="unit">mg</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">4,0 × 10<sup>8</sup> <span class="unit cancelled">mg</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>-3</sup> g
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">mg</span>
+                  </span>
+                </span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>-3</sup> kg
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">g</span>
+                  </span>
+                </span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 t
+                  </span>
+                  <span class="bottom">
+                    10<sup>3</sup> <span class="cancelled">kg</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  4,0 × 10<sup>8</sup> × 10<sup>-3</sup> × 10<sup>-3</sup> ÷ 10<sup>3</sup> t = 4,0 × 10<sup>-1</sup> t
+                </span>
+              </div>
+            </div>
+          </article>
+        `
+      },
+
+      superficie: {
+        label: "Superficie",
+        description: "Mide áreas: suelos, paredes, campos, etc.",
+        // exp relativo al metro cuadrado (m²)
+        units: [
+          {
+            id: "mm2",
+            symbol: "mm²",
+            name: "Milímetro cuadrado",
+            exp: -6,
+            info: '<span class="highlight">1 mm² = 10<sup>-6</sup> m²</span>.'
+          },
+          {
+            id: "cm2",
+            symbol: "cm²",
+            name: "Centímetro cuadrado",
+            exp: -4,
+            info: '<span class="highlight">1 cm² = 10<sup>-4</sup> m²</span>. Superficies pequeñas.'
+          },
+          {
+            id: "dm2",
+            symbol: "dm²",
+            name: "Decímetro cuadrado",
+            exp: -2,
+            info: '<span class="highlight">1 dm² = 10<sup>-2</sup> m²</span>.'
+          },
+          {
+            id: "m2",
+            symbol: "m²",
+            name: "Metro cuadrado",
+            exp: 0,
+            info: 'Unidad básica de superficie. <span class="highlight">1 m² = 10<sup>0</sup> m²</span>.'
+          },
+          {
+            id: "dam2",
+            symbol: "dam²",
+            name: "Decámetro cuadrado",
+            exp: 2,
+            info: '<span class="highlight">1 dam² = 10<sup>2</sup> m²</span>.'
+          },
+          {
+            id: "hm2",
+            symbol: "hm²",
+            name: "Hectómetro cuadrado",
+            exp: 4,
+            info: '<span class="highlight">1 hm² = 10<sup>4</sup> m²</span>.'
+          },
+          {
+            id: "ha",
+            symbol: "ha",
+            name: "Hectárea",
+            exp: 4,
+            info: 'Usada para terrenos grandes. <span class="highlight">1 ha = 10<sup>4</sup> m²</span>. (Equivale a 1 hm²).'
+          },
+          {
+            id: "km2",
+            symbol: "km²",
+            name: "Kilómetro cuadrado",
+            exp: 6,
+            info: '<span class="highlight">1 km² = 10<sup>6</sup> m²</span>.'
+          }
+        ],
+        examplesHTML: `
+          <article class="card">
+            <h3>Ejemplo 1 · De m² a cm² (mayor → menor)</h3>
+            <p><strong>Conversión:</strong> 2 m² → cm²</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">2 <span class="unit">m²</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">2 <span class="unit cancelled">m²</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>4</sup> cm²
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">m²</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  2 × 10<sup>4</sup> cm² = 20&nbsp;000 cm²
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 2 · De cm² a m² (menor → mayor)</h3>
+            <p><strong>Conversión:</strong> 7500 cm² → m²</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">7500 <span class="unit">cm²</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">7500 <span class="unit cancelled">cm²</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 m²
+                  </span>
+                  <span class="bottom">
+                    10<sup>4</sup> <span class="cancelled">cm²</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  7500 ÷ 10<sup>4</sup> m² = 0,75 m²
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 3 · De hectáreas a m² (mayor → menor)</h3>
+            <p><strong>Conversión:</strong> 1,3 ha → m²</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">1,3 <span class="unit">ha</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">1,3 <span class="unit cancelled">ha</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>4</sup> m²
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">ha</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  1,3 × 10<sup>4</sup> m² = 13&nbsp;000 m²
+                </span>
+              </div>
+            </div>
+          </article>
+        `
+      },
+
+      volumen: {
+        label: "Volumen / Capacidad",
+        description: "Mide el espacio que ocupa un cuerpo o un líquido.",
+        // exp relativo al metro cúbico (m³)
+        units: [
+          {
+            id: "mm3",
+            symbol: "mm³",
+            name: "Milímetro cúbico",
+            exp: -9,
+            info: '<span class="highlight">1 mm³ = 10<sup>-9</sup> m³</span>.'
+          },
+          {
+            id: "cm3",
+            symbol: "cm³",
+            name: "Centímetro cúbico",
+            exp: -6,
+            info: '<span class="highlight">1 cm³ = 10<sup>-6</sup> m³</span>. Es equivalente a 1 mL.'
+          },
+          {
+            id: "ml",
+            symbol: "mL",
+            name: "Mililitro",
+            exp: -6,
+            info: '<span class="highlight">1 mL = 10<sup>-6</sup> m³</span>. Muy usado en laboratorio. 1 mL = 1 cm³.'
+          },
+          {
+            id: "dm3",
+            symbol: "dm³",
+            name: "Decímetro cúbico",
+            exp: -3,
+            info: '<span class="highlight">1 dm³ = 10<sup>-3</sup> m³</span>. Es equivalente a 1 L.'
+          },
+          {
+            id: "l",
+            symbol: "L",
+            name: "Litro",
+            exp: -3,
+            info: 'Muy usado en líquidos. <span class="highlight">1 L = 10<sup>-3</sup> m³</span>. 1 L = 1 dm³.'
+          },
+          {
+            id: "m3",
+            symbol: "m³",
+            name: "Metro cúbico",
+            exp: 0,
+            info: 'Unidad básica de volumen. <span class="highlight">1 m³ = 10<sup>0</sup> m³</span>.'
+          }
+        ],
+        examplesHTML: `
+          <article class="card">
+            <h3>Ejemplo 1 · De litros a mililitros (mayor → menor)</h3>
+            <p><strong>Conversión:</strong> 1,5 L → mL</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">1,5 <span class="unit">L</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">1,5 <span class="unit cancelled">L</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>3</sup> mL
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">L</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  1,5 × 10<sup>3</sup> mL = 1500 mL
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 2 · De mL a L (menor → mayor)</h3>
+            <p><strong>Conversión:</strong> 750 mL → L</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">750 <span class="unit">mL</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">750 <span class="unit cancelled">mL</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 L
+                  </span>
+                  <span class="bottom">
+                    10<sup>3</sup> <span class="cancelled">mL</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  750 ÷ 10<sup>3</sup> L = 0,75 L
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 3 · De litros a m³ (menor → mayor)</h3>
+            <p><strong>Conversión:</strong> 2000 L → m³</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">2000 <span class="unit">L</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">2000 <span class="unit cancelled">L</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 m³
+                  </span>
+                  <span class="bottom">
+                    10<sup>3</sup> <span class="cancelled">L</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  2000 ÷ 10<sup>3</sup> m³ = 2 m³
+                </span>
+              </div>
+            </div>
+          </article>
+        `
+      },
+
+      densidad: {
+        label: "Densidad",
+        description: "Relaciona la masa de un cuerpo con el volumen que ocupa.",
+        // exp relativo a kg/m³
+        units: [
+          {
+            id: "kgm3",
+            symbol: "kg/m³",
+            name: "Kilogramo por metro cúbico",
+            exp: 0,
+            info: 'Unidad básica de densidad en el SI. <span class="highlight">1 kg/m³ = 10<sup>0</sup> kg/m³</span>.'
+          },
+          {
+            id: "gl",
+            symbol: "g/L",
+            name: "Gramo por litro",
+            exp: 0,
+            info: '<span class="highlight">1 g/L = 1 kg/m³</span>. (1 g = 10<sup>-3</sup> kg, 1 L = 10<sup>-3</sup> m³).'
+          },
+          {
+            id: "gcm3",
+            symbol: "g/cm³",
+            name: "Gramo por centímetro cúbico",
+            exp: 3,
+            info: 'Muy usada en laboratorio. <span class="highlight">1 g/cm³ = 10<sup>3</sup> kg/m³</span>.'
+          },
+          {
+            id: "gml",
+            symbol: "g/mL",
+            name: "Gramo por mililitro",
+            exp: 3,
+            info: 'Equivalente a g/cm³. <span class="highlight">1 g/mL = 10<sup>3</sup> kg/m³</span>.'
+          }
+        ],
+        examplesHTML: `
+          <article class="card">
+            <h3>Ejemplo 1 · De g/cm³ a kg/m³ (mayor → menor unidad)</h3>
+            <p><strong>Conversión:</strong> 1,2 g/cm³ → kg/m³</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">1,2 <span class="unit">g/cm³</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">1,2 <span class="unit cancelled">g/cm³</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    10<sup>3</sup> kg/m³
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">g/cm³</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  1,2 × 10<sup>3</sup> kg/m³ = 1200 kg/m³
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Ejemplo 2 · De kg/m³ a g/L (misma escala)</h3>
+            <p><strong>Conversión:</strong> 1000 kg/m³ → g/L</p>
+            <div class="steps">
+              <div class="steps-line">
+                <span class="steps-value">1000 <span class="unit">kg/m³</span></span>
+                <span class="steps-eq">=</span>
+                <span class="steps-value">1000 <span class="unit cancelled">kg/m³</span></span>
+                <span class="steps-mul">×</span>
+                <span class="fraction">
+                  <span class="top">
+                    1 g/L
+                  </span>
+                  <span class="bottom">
+                    1 <span class="cancelled">kg/m³</span>
+                  </span>
+                </span>
+                <span class="steps-eq">=</span>
+                <span class="steps-result">
+                  1000 × 10<sup>0</sup> g/L = 1000 g/L
+                </span>
+              </div>
+            </div>
+            <p class="steps-text">
+              Como 1 g/L = 1 kg/m³, numéricamente el valor es el mismo.
+            </p>
+          </article>
+        `
+      }
+    };
+
+    // Preprocesamos: índices y mapas por unidad
+    Object.values(magnitudeConfigs).forEach(config => {
+      config.unitIndex = {};
+      config.baseExp = {};
+      config.units.forEach((u, idx) => {
+        config.unitIndex[u.id] = idx;
+        config.baseExp[u.id] = u.exp;
+      });
+    });
+
+    // --------- Utilidades ---------
+    function pow10HTML(exp) {
+      return `10<sup>${exp}</sup>`;
+    }
+
+    function normVal(str) {
+      return str.replace(/\s+/g, "").toLowerCase();
+    }
+
+    function normUnitInput(str) {
+      if (!str) return "";
+      let s = str.trim();
+      s = s.replace(/\s+/g, "");
+      s = s.replace(/\^2$/i, "²").replace(/2$/i, "²");
+      s = s.replace(/\^3$/i, "³").replace(/3$/i, "³");
+      return s;
+    }
+
+    // --------- Referencias del DOM ---------
+    const magnitudeSelect = document.getElementById("magnitudeSelect");
+    const magnitudeDescription = document.getElementById("magnitudeDescription");
+    const unitsSection = document.getElementById("unitsSection");
+    const timelineSection = document.getElementById("timelineSection");
+    const examplesSection = document.getElementById("examplesSection");
+
+    const practiceValueInput = document.getElementById("practiceValue");
+    const practiceFromUnit = document.getElementById("practiceFromUnit");
+    const practiceToUnit = document.getElementById("practiceToUnit");
+    const practiceArea = document.getElementById("practiceArea");
+    const createExerciseBtn = document.getElementById("createExerciseBtn");
+
+    const examQuestionCount = document.getElementById("examQuestionCount");
+    const generateExamBtn = document.getElementById("generateExamBtn");
+    const examArea = document.getElementById("examArea");
+
+    let practiceSolution = null;
+    let examQuestions = [];
+
+    // --------- Renderizado dinámico de magnitud ---------
+    function renderMagnitude(magId) {
+      const config = magnitudeConfigs[magId];
+      if (!config) return;
+
+      magnitudeDescription.innerHTML = config.description;
+
+      // 1) Unidades (tarjetas)
+      let unitsHTML = "";
+      config.units.forEach(u => {
+        unitsHTML += `
+          <article class="card">
+            <h3>${u.name}</h3>
+            <div class="symbol"><strong>Símbolo:</strong> ${u.symbol}</div>
+            <p>${u.info}</p>
+          </article>
+        `;
+      });
+      unitsSection.innerHTML = unitsHTML;
+
+      // 2) Timeline
+      let timelineHTML = `
+        <p style="text-align:center; margin-top:0;">
+          De menor a mayor unidad. La etiqueta de arriba indica cómo <strong>subir</strong> (multiplicar)
+          y la de abajo cómo <strong>bajar</strong> (dividir).
+        </p>
+        <div class="timeline-line">
+      `;
+      config.units.forEach((u, idx) => {
+        if (idx > 0) {
+          const prev = config.units[idx - 1];
+          const stepExp = Math.abs(u.exp - prev.exp);
+          timelineHTML += `
+            <div class="timeline-connector">
+              <div class="timeline-connector-line"></div>
+              <div class="arrow-label arrow-label-right">× ${pow10HTML(stepExp)}</div>
+              <div class="arrow-label arrow-label-left">÷ ${pow10HTML(stepExp)}</div>
+            </div>
+          `;
+        }
+        timelineHTML += `
+          <div class="timeline-unit">
+            <div class="timeline-unit-name">${u.name}</div>
+            <div class="timeline-unit-symbol">(${u.symbol})</div>
+          </div>
+        `;
+      });
+      timelineHTML += `</div>`;
+      timelineSection.innerHTML = timelineHTML;
+
+      // 3) Ejemplos
+      examplesSection.innerHTML = config.examplesHTML;
+
+      // 4) Selects práctica
+      populateUnitSelects(magId);
+
+      // Limpiar práctica y examen
+      practiceArea.innerHTML = "";
+      examArea.innerHTML = "";
+      practiceValueInput.value = "";
+    }
+
+    function populateUnitSelects(magId) {
+      const config = magnitudeConfigs[magId];
+      let optionsHTML = "";
+      config.units.forEach(u => {
+        optionsHTML += `<option value="${u.id}">${u.symbol}</option>`;
+      });
+      practiceFromUnit.innerHTML = optionsHTML;
+      practiceToUnit.innerHTML = optionsHTML;
+    }
+
+    // Obtener pasos de conversión entre unidades (cadena de fracciones)
+    function getSteps(magId, fromId, toId) {
+      const config = magnitudeConfigs[magId];
+      const fromIdx = config.unitIndex[fromId];
+      const toIdx = config.unitIndex[toId];
+      if (fromIdx === undefined || toIdx === undefined || fromIdx === toIdx) return [];
+
+      const steps = [];
+      let dir = fromIdx < toIdx ? 1 : -1;
+      let currentIdx = fromIdx;
+
+      while (currentIdx !== toIdx) {
+        const nextIdx = currentIdx + dir;
+        const currentUnit = config.units[currentIdx];
+        const nextUnit = config.units[nextIdx];
+        const stepExp = Math.abs(nextUnit.exp - currentUnit.exp);
+
+        steps.push({
+          fromId: currentUnit.id,
+          toId: nextUnit.id,
+          fromSymbol: currentUnit.symbol,
+          toSymbol: nextUnit.symbol,
+          expStep: stepExp,
+          dir
+        });
+
+        currentIdx = nextIdx;
+      }
+      return steps;
+    }
+
+    // --------- Modo práctica ---------
+    function createPracticeExercise() {
+      const magId = magnitudeSelect.value;
+      const config = magnitudeConfigs[magId];
+
+      const rawValue = practiceValueInput.value.trim().replace(",", ".");
+      const value = parseFloat(rawValue);
+
+      if (rawValue === "" || isNaN(value)) {
+        practiceArea.innerHTML = '<span class="error">Por favor, introduce un número válido para el ejercicio.</span>';
+        practiceSolution = null;
+        return;
+      }
+
+      const from = practiceFromUnit.value;
+      const to = practiceToUnit.value;
+
+      const steps = getSteps(magId, from, to);
+      if (steps.length === 0) {
+        practiceArea.innerHTML = '<span class="error">Las unidades de origen y destino son iguales. No hay conversión que practicar.</span>';
+        practiceSolution = null;
+        return;
+      }
+
+      const valueStr = value.toLocaleString("es-ES");
+      const fromSymbol = config.units[config.unitIndex[from]].symbol;
+
+      practiceSolution = steps.map(s => {
+        let numVal, numUnit, denVal, denUnit;
+        if (s.dir === 1) {
+          numVal = "1";
+          numUnit = s.toSymbol;
+          denVal = `10^${s.expStep}`;
+          denUnit = s.fromSymbol;
+        } else {
+          numVal = `10^${s.expStep}`;
+          numUnit = s.toSymbol;
+          denVal = "1";
+          denUnit = s.fromSymbol;
+        }
+        return { numVal, numUnit, denVal, denUnit };
+      });
+
+      let html = `
+        <div class="steps">
+          <div class="steps-line">
+            <span class="steps-value">${valueStr} <span class="unit">${fromSymbol}</span></span>
+            <span class="steps-eq">=</span>
+            <span class="steps-value">${valueStr} <span class="unit cancelled">${fromSymbol}</span></span>
+            <span class="steps-mul">×</span>
+      `;
+
+      steps.forEach((s, index) => {
+        if (index > 0) {
+          html += `<span class="steps-mul">×</span>`;
+        }
+
+        html += `
+          <span class="fraction">
+            <span class="top">
+              <input class="frac-input" id="p_numVal_${index}" placeholder="valor" />
+              <input class="frac-input unit" id="p_numUnit_${index}" placeholder="unidad" />
+            </span>
+            <span class="bottom">
+              <input class="frac-input" id="p_denVal_${index}" placeholder="valor" />
+              <input class="frac-input unit" id="p_denUnit_${index}" placeholder="unidad" />
+            </span>
+          </span>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+        <button id="gradePracticeBtn" class="practice-grade-btn">Corregir</button>
+        <div id="practiceFeedback" class="steps-text"></div>
+      `;
+
+      practiceArea.innerHTML = html;
+
+      const gradeBtn = document.getElementById("gradePracticeBtn");
+      gradeBtn.addEventListener("click", gradePractice);
+    }
+
+    function gradePractice() {
+      if (!practiceSolution) return;
+
+      let correctFractions = 0;
+      const totalFractions = practiceSolution.length;
+
+      practiceSolution.forEach((sol, index) => {
+        const numValInput = document.getElementById(`p_numVal_${index}`);
+        const numUnitInput = document.getElementById(`p_numUnit_${index}`);
+        const denValInput = document.getElementById(`p_denVal_${index}`);
+        const denUnitInput = document.getElementById(`p_denUnit_${index}`);
+
+        [numValInput, numUnitInput, denValInput, denUnitInput].forEach(el =>
+          el.classList.remove("ok", "wrong")
+        );
+
+        const numValOk = normVal(numValInput.value) === normVal(sol.numVal);
+        const numUnitOk = normUnitInput(numUnitInput.value) === normUnitInput(sol.numUnit);
+        const denValOk = normVal(denValInput.value) === normVal(sol.denVal);
+        const denUnitOk = normUnitInput(denUnitInput.value) === normUnitInput(sol.denUnit);
+
+        if (numValOk) numValInput.classList.add("ok"); else numValInput.classList.add("wrong");
+        if (numUnitOk) numUnitInput.classList.add("ok"); else numUnitInput.classList.add("wrong");
+        if (denValOk) denValInput.classList.add("ok"); else denValInput.classList.add("wrong");
+        if (denUnitOk) denUnitInput.classList.add("ok"); else denUnitInput.classList.add("wrong");
+
+        if (numValOk && numUnitOk && denValOk && denUnitOk) {
+          correctFractions++;
+        }
+      });
+
+      const feedback = document.getElementById("practiceFeedback");
+      if (!feedback) return;
+
+      if (correctFractions === totalFractions) {
+        feedback.innerHTML = `✅ ¡Perfecto! Has acertado las ${totalFractions} fracciones.`;
+      } else {
+        feedback.innerHTML = `Has acertado ${correctFractions} de ${totalFractions} fracciones. Revisa las que aparecen en rojo.`;
+      }
+    }
+
+    createExerciseBtn.addEventListener("click", createPracticeExercise);
+
+    // --------- Modo examen ---------
+    function getPowerDecomposition10(value, magId, fromId, toId) {
+      const config = magnitudeConfigs[magId];
+      const expFrom = config.baseExp[fromId];
+      const expTo = config.baseExp[toId];
+      const ratioExp = expFrom - expTo; // cuántas potencias de 10
+
+      return {
+        factor: value,
+        exp: ratioExp,
+        unit: config.units[config.unitIndex[toId]].symbol
+      };
+    }
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function generateRandomQuestion() {
+      const magId = magnitudeSelect.value;
+      const config = magnitudeConfigs[magId];
+      const units = config.units;
+
+      let fromIdx = randomInt(0, units.length - 1);
+      let toIdx;
+      do {
+        toIdx = randomInt(0, units.length - 1);
+      } while (toIdx === fromIdx);
+
+      const from = units[fromIdx].id;
+      const to = units[toIdx].id;
+
+      const allowedValues = [1, 2, 5, 10, 20, 25, 50, 100, 250, 500, 1000];
+      const value = allowedValues[randomInt(0, allowedValues.length - 1)];
+
+      const decomp = getPowerDecomposition10(value, magId, from, to);
+
+      return {
+        magId,
+        value,
+        from,
+        to,
+        factor: decomp.factor,
+        exp: decomp.exp,
+        unit: decomp.unit
+      };
+    }
+
+    function generateExam() {
+      const n = parseInt(examQuestionCount.value, 10) || 5;
+
+      examQuestions = [];
+      for (let i = 0; i < n; i++) {
+        examQuestions.push(generateRandomQuestion());
+      }
+
+      let html = "";
+      examQuestions.forEach((q, idx) => {
+        const configQ = magnitudeConfigs[q.magId];
+        const fromSymbol = configQ.units[configQ.unitIndex[q.from]].symbol;
+        const toSymbol = configQ.units[configQ.unitIndex[q.to]].symbol;
+        const valueStr = q.value.toLocaleString("es-ES");
+
+        html += `
+          <div class="exam-question">
+            <div class="exam-question-title">
+              Pregunta ${idx + 1}: convierte <strong>${valueStr} ${fromSymbol}</strong> a <strong>${toSymbol}</strong>.
+            </div>
+            <div class="exam-answer-row">
+              Respuesta:
+              <input class="frac-input" id="ex_factor_${idx}" placeholder="a" />
+              &times; 10^
+              <input class="frac-input" id="ex_exp_${idx}" placeholder="n" />
+              <span class="unit">${toSymbol}</span>
+            </div>
+            <div id="examReview_${idx}" class="steps-text"></div>
+          </div>
+        `;
+      });
+
+      html += `
+        <button id="gradeExamBtn" class="practice-grade-btn">Corregir examen</button>
+        <div id="examFeedback" class="steps-text"></div>
+      `;
+
+      examArea.innerHTML = html;
+
+      const gradeExamBtn = document.getElementById("gradeExamBtn");
+      gradeExamBtn.addEventListener("click", gradeExam);
+    }
+
+    function gradeExam() {
+      if (!examQuestions || examQuestions.length === 0) return;
+
+      let correct = 0;
+      const total = examQuestions.length;
+
+      examQuestions.forEach((q, idx) => {
+        const factorInput = document.getElementById(`ex_factor_${idx}`);
+        const expInput = document.getElementById(`ex_exp_${idx}`);
+        const reviewDiv = document.getElementById(`examReview_${idx}`);
+
+        factorInput.classList.remove("ok", "wrong");
+        expInput.classList.remove("ok", "wrong");
+
+        const factorStr = factorInput.value.trim().replace(",", ".");
+        const expStr = expInput.value.trim();
+
+        const factorUser = parseFloat(factorStr);
+        const expUser = parseInt(expStr, 10);
+
+        const factorOk = !isNaN(factorUser) && Math.abs(factorUser - q.factor) < 1e-6;
+        const expOk = !isNaN(expUser) && expUser === q.exp;
+
+        if (factorOk) factorInput.classList.add("ok"); else factorInput.classList.add("wrong");
+        if (expOk) expInput.classList.add("ok"); else expInput.classList.add("wrong");
+
+        if (reviewDiv) {
+          if (factorOk && expOk) {
+            reviewDiv.innerHTML = `✅ Bien: a = <strong>${q.factor}</strong>, n = <strong>${q.exp}</strong>.`;
+          } else {
+            reviewDiv.innerHTML = `❌ Correcto: a = <strong>${q.factor}</strong>, n = <strong>${q.exp}</strong>.`;
+          }
+        }
+
+        if (factorOk && expOk) correct++;
+      });
+
+      const feedback = document.getElementById("examFeedback");
+      if (!feedback) return;
+
+      const gradePercent = Math.round((correct / total) * 100);
+      if (correct === total) {
+        feedback.innerHTML = `Retroalimentación: ✅ ¡Excelente! Has acertado las ${total} preguntas. Nota: ${gradePercent}%.`;
+      } else {
+        feedback.innerHTML = `Retroalimentación: has acertado ${correct} de ${total} preguntas. Nota aproximada: ${gradePercent}%. Revisa las respuestas en rojo y las soluciones de cada pregunta.`;
+      }
+    }
+
+    generateExamBtn.addEventListener("click", generateExam);
+
+    // Botón imprimir
+    const printBtn = document.getElementById("printBtn");
+    if (printBtn) {
+      printBtn.addEventListener("click", () => window.print());
+    }
+
+    // Inicializar con longitud
+    renderMagnitude("longitud");
+    magnitudeSelect.addEventListener("change", () => {
+      renderMagnitude(magnitudeSelect.value);
+    });
+  </script>
+</body>
+</html>
